@@ -45,7 +45,7 @@
     }
 
     function setPlaceholderOrFlagChanged(input, text) {
-        (input.val() === '') ? input.val(text) : input.data('changed', true);
+        (input.val() === '') ? input.val(text).addClass('empty') : input.data('changed', true);
     }
 
     function setupPasswords(input) {
