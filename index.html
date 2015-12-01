@@ -28,11 +28,19 @@
         <br>
         账号: <input type="text" name="account" placeholder="请输入账号"/><br><br>
         密码: <input type="password" name="password" placeholder="请输入密码"/><br><br>
+        验证码: <input type="text" name="image_code" placeholder="请输入验证码"/><br><br>
         <input type="submit" value="提交"><br>
     </fieldset>
 </form>
 <script src="jquery.js"></script>
 <script src="jquery.placeholder.js"></script>
-
+<script>
+    $(function() {
+        var $form = $('form');
+        $form.submit(function() {
+            alert($form.serialize());
+        });
+    });
+</script>
 </body>
 </html>

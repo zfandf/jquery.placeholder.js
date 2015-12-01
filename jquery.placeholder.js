@@ -2,7 +2,7 @@
  * Created by zhangff on 2015/11/12.
  * 对不支持表单placeholder属性的浏览器做placeholder兼容
  */
-(function($) {
+;(function($) {
 
     // 如果浏览器支持placeholder,则直接返回
     if ("placeholder" in document.createElement("input")) {
@@ -18,7 +18,7 @@
             setupPasswords($(this));
         });
 
-        $('form').submit(function(e) {
+        $('form').submit(function() {
             clearPlaceholdersBeforeSubmit($(this));
         });
     });
@@ -27,7 +27,7 @@
 
         var placeholderText = input.attr('placeholder');
         setPlaceholderOrFlagChanged(input, placeholderText);
-        input.focus(function(e) {
+        input.focus(function() {
             input.removeClass('empty');
             if (input.data('changed') === true) {
                 return;
@@ -35,17 +35,17 @@
             if (input.val() === placeholderText) {
                 input.val('');
             }
-        }).blur(function(e) {
+        }).blur(function() {
             if (input.val() === '') {
                 input.val(placeholderText).addClass('empty');
             }
-        }).change(function(e) {
+        }).change(function() {
             input.data('changed', input.val() !== '');
         });
     }
 
     function setPlaceholderOrFlagChanged(input, text) {
-        (input.val() === '') ? input.val(text).addClass('empty') : input.data('changed', true);
+        (input.val() === '' || input.val() === text) ? input.val(text).addClass('empty') : input.data('changed', true);
     }
 
     function setupPasswords(input) {
@@ -54,7 +54,7 @@
 
         (input.val() === '') ? input.hide() : passwordPlaceholder.hide();
 
-        $(input).blur(function(e) {
+        $(input).blur(function() {
             if (input.val() !== '') {
                 return;
             }
@@ -62,7 +62,7 @@
             passwordPlaceholder.show();
         });
 
-        $(passwordPlaceholder).focus(function(e) {
+        $(passwordPlaceholder).focus(function() {
             input.show().focus();
             passwordPlaceholder.hide();
         });

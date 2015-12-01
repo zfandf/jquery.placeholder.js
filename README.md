@@ -1,0 +1,1 @@
+# 对不支持表单placeholder属性的浏览器做placeholder兼容
